@@ -2,7 +2,7 @@
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/thediveo/opt)](https://pkg.go.dev/github.com/thediveo/opt)
 [![GitHub](https://img.shields.io/github/license/thediveo/opt)](https://img.shields.io/github/license/thediveo/opt)
-![build and test](https://github.com/thediveo/opt/workflows/build%20and%20test/badge.svg?branch=master)
+![build and test](https://github.com/thediveo/opt/actions/workflows/buildandtest.yaml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/thediveo/opt)](https://goreportcard.com/report/github.com/thediveo/opt)
 ![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
 
@@ -12,6 +12,9 @@ Our take on `If().Then().Else()` using Go generics. It's almost that literally..
 result := opt.If[string](answer == 42).Then("hooray").Else("boo!")
 ```
 
+In the hopefully near future, when [spec: generic methods for
+Go](https://github.com/golang/go/issues/77273) has landed, we should be able to
+drop the type parameter from the `If` type.
 
 ## DevContainer
 

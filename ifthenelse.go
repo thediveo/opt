@@ -20,18 +20,19 @@ type If[T any] bool
 
 // Then specifies the value eventually be returned by an If.Then.Else chain in
 // case the condition value is true.
-func (i If[T]) Then(v T) orElse[T] {
-	return orElse[T]{cond: bool(i), then: v}
+func (i If[T]) Then(v T) OrElse[T] {
+	return OrElse[T]{cond: bool(i), then: v}
 }
 
-type orElse[T any] struct {
+// OrElse chains the condition value together into the “Else” clause.
+type OrElse[T any] struct {
 	cond bool
 	then T
 }
 
 // Else specifies the value eventually to be returned by an If.Then.Else chain
 // in case the condition value is false.
-func (e orElse[T]) Else(v T) T {
+func (e OrElse[T]) Else(v T) T {
 	if e.cond {
 		return e.then
 	}
