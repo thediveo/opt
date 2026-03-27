@@ -12,9 +12,13 @@ Our take on `If().Then().Else()` using Go generics. It's almost that literally..
 result := opt.If[string](answer == 42).Then("hooray").Else("boo!")
 ```
 
-In the hopefully near future, when [spec: generic methods for
-Go](https://github.com/golang/go/issues/77273) has landed, we should be able to
-drop the type parameter from the `If` type.
+According to [godbolt.org's Compiler Explorer](https://godbolt.org/z/Wdj34rz1q)
+the Go compiler gives the opt package short shrift: as optimized as writing the
+traditional elaborate `var x T; if (cond) { x = ... } else { x = ... }`.
+
+> [!NOTE] In the hopefully near future, when [spec: generic methods for
+> Go](https://github.com/golang/go/issues/77273) has landed, we should be able
+> to drop the type parameter from the `If` type.
 
 ## DevContainer
 
