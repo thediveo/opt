@@ -7,7 +7,9 @@
 	"settings": {
 		"go.lintTool": "golangci-lint-v2",
 		"go.alternateTools": {
-			"customFormatter": "golangci-lint-v2"
+			"customFormatter": "golangci-lint-v2",
+			"go": "/home/vscode/go/bin/gotip",
+			"gopls": "/home/vscode/go/bin/gopls"
 		},
 		"go.formatTool": "custom",
 		"go.formatFlags": [
@@ -22,6 +24,9 @@
 			"-ginkgo.v",
 			"-ginkgo.no-color"
 		],
+		"go.toolsEnvVars": {
+			"GOEXPERIMENT": "genericmethods"
+		},
 		"gopls": {
 			"ui.semanticTokens": true,
 			// https://github.com/golang/vscode-go/blob/master/docs/settings.md#uidiagnosticanalyses
@@ -29,6 +34,10 @@
 			// https://github.com/golang/vscode-go/blob/master/docs/settings.md#uicodelenses
 			"ui.codelenses": {
 				"vulncheck": true,
+			},
+			"env": {
+				"GOROOT": "/home/vscode/sdk/gotip",
+				"GOEXPERIMENT": "genericmethods"
 			}
 		},
 		"markdown.styles": [

@@ -12,7 +12,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-//go:build !go1.27
+//go:build go1.27
 
 package opt
 
@@ -26,7 +26,7 @@ var _ = Describe("if-then-else", func() {
 	When("the condition is true", func() {
 
 		It("takes then-value", func() {
-			result := If[string](true).Then("true").Else("false")
+			result := If(true).Then("true").Else("false")
 			Expect(result).To(Equal("true"))
 		})
 
@@ -35,7 +35,7 @@ var _ = Describe("if-then-else", func() {
 	When("the condition is false", func() {
 
 		It("takes else-value", func() {
-			result := If[string](false).Then("true").Else("false")
+			result := If(false).Then("true").Else("false")
 			Expect(result).To(Equal("false"))
 		})
 

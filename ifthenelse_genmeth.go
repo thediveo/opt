@@ -12,29 +12,30 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-//go:build !go1.27
+//go:build go1.27
 
 package opt
 
-// If wraps a bool condition value for chaining with Then and finally Else,
-// providing type safety for the “then” and “else” values.
-type If[T any] bool
+// If returns a bool condition value that is to be chained with Then and finally
+// Else, providing type safety for the “then” and “else” values.
+func If(cond bool) ifthen { return ifthen(cond) }
+
+type ifthen bool
 
 // Then specifies the value eventually be returned by an If.Then.Else chain in
 // case the condition value is true.
-func (i If[T]) Then(v T) OrElse[T] {
-	return OrElse[T]{cond: bool(i), then: v}
+func (i ifthen) Then[T any](v T) orelse[T] {
+	return orelse[T]{cond: bool(i), then: v}
 }
 
-// OrElse chains the condition value together into the “Else” clause.
-type OrElse[T any] struct {
+type orelse[T any] struct {
 	cond bool
 	then T
 }
 
 // Else specifies the value eventually to be returned by an If.Then.Else chain
 // in case the condition value is false.
-func (e OrElse[T]) Else(v T) T {
+func (e orelse[T]) Else(v T) T {
 	if e.cond {
 		return e.then
 	}

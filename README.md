@@ -8,7 +8,22 @@
 
 Our take on `If().Then().Else()` using Go generics. It's almost that literally...
 
+### v2
+
+Requires Go 1.27 and later with the new generics methods language feature. The
+syntactic benefit of v2 over v1 is that there is no need anymore to explicitly
+specify the value type to `opt.If`. Instead, the value type is derived from
+`Then(v)`, automatically type-checking `Else(v)` to be of the same type.
+
 ```go
+//go:build go1.27
+result := opt.If(answer == 42).Then("hooray").Else("boo!")
+```
+
+### v1
+
+```go
+//go:build !go1.27
 result := opt.If[string](answer == 42).Then("hooray").Else("boo!")
 ```
 
